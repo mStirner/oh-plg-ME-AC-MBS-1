@@ -40,11 +40,11 @@ module.exports = (info, logger, init) => {
 
                     resolve(store);
 
-                }, (filter) => {
+                }, async (filter) => {
 
                     logger.debug("Store not found, add one");
 
-                    C_STORE.add({
+                    let store = await C_STORE.add({
                         name: device.name,
                         config: [{
                             name: "Device ID",
@@ -55,6 +55,8 @@ module.exports = (info, logger, init) => {
                         }],
                         ...filter
                     });
+
+                    logger.info("Store added", store);
 
                 });
             });
@@ -100,8 +102,6 @@ module.exports = (info, logger, init) => {
                             })
                         };
 
-                        console.log("before add", obj);
-
                         let endpoint = await C_ENDPOINTS.add(obj);
 
                         logger.info("Endpoint added", endpoint);
@@ -125,8 +125,6 @@ module.exports = (info, logger, init) => {
 
                 let iface = device.interfaces[0];
                 let { host, port } = iface.settings;
-
-                console.log("Store", store);
 
                 store.changes().once("changed", (key, value) => {
 
