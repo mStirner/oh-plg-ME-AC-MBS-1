@@ -21,7 +21,8 @@ Add plugin item via HTTP API:<br />
    "version": "1.0.0",
    "intents":[
       "devices",
-      "endpoints"
+      "endpoints",
+      "store"
    ],
    "uuid": "4cbf7b71-4fe6-48aa-a25d-9373bbdf9491"
 }
