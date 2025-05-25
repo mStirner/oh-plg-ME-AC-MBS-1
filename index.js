@@ -249,8 +249,7 @@ module.exports = (info, logger, init) => {
                             // capture value from parameter
                             let value = params.lean()?.value || null;
 
-                            let { register = null, payload = null } = commands.find(({ alias }, index) => {
-                                console.log("Command.find", commands[index]);
+                            let { register = null, payload = null } = commands.find(({ alias }) => {
                                 return cmd.alias === alias;
                             });
 
